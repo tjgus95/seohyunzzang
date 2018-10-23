@@ -1,5 +1,12 @@
+LDFLAGS=-lwiringPi
 CC=gcc
-CFLAGS=-lWarn -pedantic
+CFLAGS=-lWarn  -pedantic
+
+irtester:	irtester.o
+	$(CC) irtester.o -o irtester $(LDFLAGS)
+
+irtester.o:	irtester.c
+	$(CC) $(CFLAGS) -c -ansi $<
 
 tester: tester.o libmyifttt.a
 	$(CC) tester.o -L. -lmyifttt -lcurl -o tester
